@@ -30,12 +30,10 @@ Method: GET
 
 Response:
 
-json
-Copy
-Edit
 {
-"message": "API is working!"
+"message": "You are hitting the /api/v1 endpoint"
 }
+
 ✅ POST /api/v1/
 Purpose: Accepts a JSON payload with a required method field.
 
@@ -49,47 +47,32 @@ Content-Type: application/json
 
 Required Request Body:
 
-json
-Copy
-Edit
 {
 "method": "exampleValue"
 }
+
 ✅ Example Success Response:
-json
-Copy
-Edit
+
 {
-"status": "success",
-"receivedMethod": "exampleValue"
+msg: Post request validated successfully.
 }
 ❌ Example Error Response (Missing "method"):
-json
-Copy
-Edit
+
 {
-"error": "Request body must include a 'method' field"
+"error": "Field method not present in Request body"
 }
+
 🧪 Test with cURL
 GET Request
 
-bash
-Copy
-Edit
 curl http://localhost:3000/api/v1
 POST Request (valid)
 
-bash
-Copy
-Edit
 curl -X POST http://localhost:3000/api/v1/
--H "Content-Type: application/json" \
- -d '{"method": "test"}'
+-H "Content-Type: application/json"
+-d '{"method": "test"}'
 POST Request (invalid)
 
-bash
-Copy
-Edit
 curl -X POST http://localhost:3000/api/v1/
 -H "Content-Type: application/json"
 -d '{}'
@@ -98,6 +81,7 @@ curl -X POST http://localhost:3000/api/v1/
 The POST /api/v1/ route uses middleware to ensure the request body contains a method key. If it is missing, the middleware responds with an error and halts execution.
 
 ✅ Summary of Routes
+
 Method Endpoint Description
 GET /api/v1
 POST /api/v1/ Requires "method" in body
